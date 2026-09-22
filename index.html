@@ -1,930 +1,1174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Coffee Time | Specialty Coffee & Desserts</title>
-    <meta
-        name="description"
-        content="Coffee Time — specialty coffee, delicious desserts and a warm atmosphere."
-    >
+  <title>Coffee Time | Hama</title>
+  <meta name="description" content="Coffee Time — good coffee, good time.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    :root {
+      --brown: #4b2e22;
+      --brown-light: #76503d;
+      --cream: #f7f1e8;
+      --white: #fffdf9;
+      --text: #2d211c;
+      --muted: #806f63;
+      --border: #e7dbcf;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,253,249,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(231,219,207,.7);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      font-size: 14px;
+    }
+
+    /* Coffee bean logo */
+
+    .bean {
+      width: 28px;
+      height: 38px;
+      background: var(--brown);
+      border-radius: 50% 45% 50% 45%;
+      transform: rotate(35deg);
+      position: relative;
+    }
+
+    .bean::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 27px;
+      background: #ead9c8;
+      border-radius: 50%;
+      left: 12px;
+      top: 6px;
+      transform: rotate(20deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--brown);
+    }
+
+    .nav-button {
+      background: var(--brown);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 760px;
+      padding-top: 76px;
+      display: flex;
+      align-items: center;
+
+      background:
+        linear-gradient(90deg, rgba(35,20,14,.78), rgba(35,20,14,.25)),
+        url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=85")
+        center / cover;
+    }
+
+    .hero-content {
+      color: white;
+      max-width: 700px;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .25em;
+      font-size: 11px;
+      margin-bottom: 20px;
+      opacity: .9;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Playfair Display", serif;
+    }
+
+    h1 {
+      font-size: clamp(60px, 9vw, 105px);
+      line-height: .92;
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 500px;
+      margin: 25px 0 32px;
+      color: #f3eae2;
+      font-size: 17px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 14px 23px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .button-white {
+      background: white;
+      color: var(--brown);
+    }
+
+    .button-outline {
+      border: 1px solid rgba(255,255,255,.7);
+      color: white;
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      margin-bottom: 40px;
+    }
+
+    .kicker {
+      color: var(--brown-light);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    h2 {
+      font-size: clamp(40px, 5vw, 58px);
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    /* POPULAR */
+
+    .popular {
+      background: var(--cream);
+    }
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 220px;
+      background:
+        linear-gradient(135deg, #76503d, #d8c0aa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.8);
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-info h3 {
+      font-size: 21px;
+    }
+
+    .price {
+      margin-top: 5px;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* MENU */
+
+    .menu-tabs {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .tab {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      padding: 10px 17px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tab.active {
+      background: var(--brown);
+      color: white;
+      border-color: var(--brown);
+    }
+
+    .menu-panel {
+      display: none;
+    }
+
+    .menu-panel.active {
+      display: block;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .menu-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      background: white;
+    }
+
+    .menu-item h3 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .menu-price {
+      white-space: nowrap;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--brown);
+      color: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about .kicker {
+      color: #d7bda7;
+    }
+
+    .about h2 {
+      margin-bottom: 22px;
+    }
+
+    .about p {
+      color: #eaded4;
+      max-width: 500px;
+    }
+
+    .about-image {
+      height: 500px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, #76503d, #2e1d16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #dfcbbb;
+      letter-spacing: .1em;
+      font-size: 12px;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-template-rows: 250px 250px;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown-light);
+      font-size: 12px;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    /* INFO */
+
+    .visit {
+      background: var(--cream);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 22px;
+    }
+
+    .info-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .info-card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #251813;
+      color: #eaded5;
+      padding: 55px 0 25px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    footer .logo {
+      color: white;
+    }
+
+    footer .bean {
+      background: #c8a98f;
+    }
+
+    footer p {
+      color: #9d897d;
+      font-size: 13px;
+      max-width: 350px;
+      margin-top: 14px;
+    }
+
+    .social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social a {
+      border: 1px solid #59463b;
+      padding: 9px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+    }
+
+    .copyright {
+      border-top: 1px solid #403129;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #806e63;
+      font-size: 11px;
+    }
+
+    /* WHATSAPP */
+
+    .whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 200;
+      background: #27814b;
+      color: white;
+      padding: 13px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 12px 35px rgba(0,0,0,.2);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .popular-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        order: -1;
+        height: 380px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px;
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .hero {
+        min-height: 650px;
+      }
+
+      h1 {
+        font-size: 58px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .popular-grid {
+        gap: 10px;
+      }
+
+      .product-image {
+        height: 160px;
+      }
+
+      .product-info {
+        padding: 13px;
+      }
+
+      .product-info h3 {
+        font-size: 17px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px;
+      }
+
+      .footer-top {
+        display: block;
+      }
+
+      .social {
+        margin-top: 25px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
+  <!-- NAVIGATION -->
 
-<header class="header" id="header">
+  <nav>
     <div class="container nav">
 
-        <a href="#home" class="logo">
-            <span class="logo-mark">CT</span>
-            <span>Coffee Time</span>
-        </a>
+      <a href="#home" class="logo">
+        <span class="bean"></span>
+        COFFEE TIME
+      </a>
 
-        <nav class="nav-links" id="navLinks">
-            <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
-            <a href="#menu" data-en="Menu" data-ar="المنيو">Menu</a>
-            <a href="#about" data-en="About" data-ar="عنّا">About</a>
-            <a href="#gallery" data-en="Gallery" data-ar="المعرض">Gallery</a>
-            <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
-        </nav>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+      </div>
 
-        <div class="nav-actions">
-            <button class="language-btn" id="languageBtn">AR</button>
+      <a href="#menu" class="nav-button">
+        View Menu
+      </a>
 
-            <a
-                href="https://wa.me/0000000000"
-                target="_blank"
-                class="nav-order"
-            >
-                Order
-            </a>
+    </div>
+  </nav>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          Coffee · Hama
         </div>
-
-    </div>
-</header>
-
-
-<main>
-
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-    <div class="hero-image">
-        <img
-            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=85"
-            alt="Freshly brewed coffee"
-        >
-    </div>
-
-    <div class="hero-overlay"></div>
-
-    <div class="container hero-content">
-
-        <span class="eyebrow"
-              data-en="SPECIALTY COFFEE • GOOD MOMENTS"
-              data-ar="قهوة مختصة • لحظات جميلة">
-            SPECIALTY COFFEE • GOOD MOMENTS
-        </span>
 
         <h1>
-            <span data-en="Your daily dose of"
-                  data-ar="جرعتك اليومية من">
-                Your daily dose of
-            </span>
-            <em data-en="coffee."
-                data-ar="القهوة.">
-                coffee.
-            </em>
+          Good coffee.<br>
+          Good time.
         </h1>
 
-        <p
-            data-en="Carefully brewed coffee, fresh desserts and a place made for good conversations."
-            data-ar="قهوة محضّرة بعناية، حلويات طازجة، ومكان صُمم للحظات الجميلة."
-        >
-            Carefully brewed coffee, fresh desserts and a place made for good conversations.
+        <p>
+          A warm place for carefully made coffee,
+          refreshing drinks and something sweet on the side.
         </p>
 
-        <div class="hero-buttons">
+        <div class="buttons">
 
-            <a href="#menu" class="btn btn-primary">
-                <span data-en="View Menu" data-ar="شوف المنيو">
-                    View Menu
-                </span>
-            </a>
+          <a href="#menu" class="button button-white">
+            Explore Menu
+          </a>
 
-            <a
-                href="https://wa.me/0000000000?text=Hello%20Coffee%20Time"
-                target="_blank"
-                class="btn btn-whatsapp"
-            >
-                <span class="whatsapp-icon">◉</span>
-                <span data-en="Order on WhatsApp"
-                      data-ar="اطلب عبر واتساب">
-                    Order on WhatsApp
-                </span>
-            </a>
+          <a href="https://wa.me/963000000000"
+             class="button button-outline">
+            WhatsApp
+          </a>
 
         </div>
 
-        <div class="hero-note">
-            <span class="dot"></span>
-            <span data-en="Open today • 8:00 AM — 12:00 AM"
-                  data-ar="مفتوح اليوم • 8:00 ص — 12:00 م">
-                Open today • 8:00 AM — 12:00 AM
-            </span>
-        </div>
+      </div>
 
     </div>
-</section>
+
+  </section>
 
 
-<!-- ================= FEATURED ================= -->
+  <!-- POPULAR -->
 
-<section class="section featured-section">
+  <section class="popular">
 
     <div class="container">
 
-        <div class="section-heading">
-            <div>
-                <span class="eyebrow dark"
-                      data-en="OUR FAVORITES"
-                      data-ar="اختياراتنا">
-                    OUR FAVORITES
-                </span>
+      <div class="section-title">
 
-                <h2 data-en="Made for your coffee break."
-                    data-ar="مصممة لوقت قهوتك.">
-                    Made for your coffee break.
-                </h2>
-            </div>
+        <div class="kicker">
+          A few favorites
+        </div>
 
-            <a href="#menu" class="text-link">
-                <span data-en="View full menu →"
-                      data-ar="شوف المنيو كاملة ←">
-                    View full menu →
-                </span>
-            </a>
+        <h2>
+          Popular picks
+        </h2>
+
+      </div>
+
+
+      <div class="popular-grid">
+
+        <div class="product-card">
+
+          <div class="product-image">
+            ICED SPANISH
+          </div>
+
+          <div class="product-info">
+            <h3>Iced Spanish</h3>
+            <div class="price">0.00 SYP</div>
+          </div>
+
         </div>
 
 
-        <div class="featured-grid">
+        <div class="product-card">
 
-            <article class="drink-card">
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80"
-                        alt="Cappuccino"
-                    >
-                    <span class="price">$4.50</span>
-                </div>
+          <div class="product-image">
+            SPANISH LATTE
+          </div>
 
-                <div class="card-content">
-                    <h3 data-en="Classic Cappuccino"
-                        data-ar="كابتشينو كلاسيك">
-                        Classic Cappuccino
-                    </h3>
-
-                    <p data-en="Rich espresso, silky steamed milk and a delicate foam."
-                       data-ar="إسبريسو غني، حليب مبخر ناعم ورغوة خفيفة.">
-                        Rich espresso, silky steamed milk and a delicate foam.
-                    </p>
-                </div>
-            </article>
-
-
-            <article class="drink-card">
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80"
-                        alt="Iced latte"
-                    >
-                    <span class="price">$5.00</span>
-                </div>
-
-                <div class="card-content">
-                    <h3 data-en="Iced Vanilla Latte"
-                        data-ar="آيس فانيلا لاتيه">
-                        Iced Vanilla Latte
-                    </h3>
-
-                    <p data-en="Smooth espresso, cold milk, vanilla and plenty of ice."
-                       data-ar="إسبريسو ناعم، حليب بارد، فانيلا وثلج.">
-                        Smooth espresso, cold milk, vanilla and plenty of ice.
-                    </p>
-                </div>
-            </article>
-
-
-            <article class="drink-card">
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=900&q=80"
-                        alt="Spanish latte"
-                    >
-                    <span class="price">$5.25</span>
-                </div>
-
-                <div class="card-content">
-                    <h3 data-en="Spanish Latte"
-                        data-ar="سبانيش لاتيه">
-                        Spanish Latte
-                    </h3>
-
-                    <p data-en="Creamy espresso with sweetened condensed milk."
-                       data-ar="إسبريسو كريمي مع الحليب المكثف المحلى.">
-                        Creamy espresso with sweetened condensed milk.
-                    </p>
-                </div>
-            </article>
-
-
-            <article class="drink-card">
-                <div class="card-image">
-                    <img
-                        src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=900&q=80"
-                        alt="Chocolate cake"
-                    >
-                    <span class="price">$4.75</span>
-                </div>
-
-                <div class="card-content">
-                    <h3 data-en="Chocolate Cake"
-                        data-ar="كيكة الشوكولا">
-                        Chocolate Cake
-                    </h3>
-
-                    <p data-en="Moist chocolate cake with smooth chocolate cream."
-                       data-ar="كيكة شوكولا طرية مع كريمة شوكولا ناعمة.">
-                        Moist chocolate cake with smooth chocolate cream.
-                    </p>
-                </div>
-            </article>
+          <div class="product-info">
+            <h3>Spanish Latte</h3>
+            <div class="price">0.00 SYP</div>
+          </div>
 
         </div>
+
+
+        <div class="product-card">
+
+          <div class="product-image">
+            PISTACHIO
+          </div>
+
+          <div class="product-info">
+            <h3>Pistachio Latte</h3>
+            <div class="price">0.00 SYP</div>
+          </div>
+
+        </div>
+
+
+        <div class="product-card">
+
+          <div class="product-image">
+            TIRAMISU
+          </div>
+
+          <div class="product-info">
+            <h3>Tiramisu</h3>
+            <div class="price">0.00 SYP</div>
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
-</section>
+
+  </section>
 
 
-<!-- ================= MENU ================= -->
+  <!-- MENU -->
 
-<section class="section menu-section" id="menu">
+  <section id="menu">
 
     <div class="container">
 
-        <div class="section-heading centered">
+      <div class="section-title">
 
-            <span class="eyebrow dark"
-                  data-en="THE MENU"
-                  data-ar="المنيو">
-                THE MENU
-            </span>
+        <div class="kicker">
+          Our selection
+        </div>
 
-            <h2 data-en="Something for every mood."
-                data-ar="شي مناسب لكل مزاج.">
-                Something for every mood.
-            </h2>
+        <h2>
+          The menu
+        </h2>
 
-            <p data-en="From your first espresso to your late-night sweet tooth."
-               data-ar="من أول إسبريسو بالنهار لآخر حلوة بالليل.">
-                From your first espresso to your late-night sweet tooth.
-            </p>
+      </div>
+
+
+      <div class="menu-tabs">
+
+        <button class="tab active" data-target="cold">
+          Cold Drinks
+        </button>
+
+        <button class="tab" data-target="hot">
+          Hot Drinks
+        </button>
+
+        <button class="tab" data-target="desserts">
+          Desserts
+        </button>
+
+      </div>
+
+
+      <!-- COLD -->
+
+      <div class="menu-panel active" id="cold">
+
+        <div class="menu-grid">
+
+          <div class="menu-item">
+            <h3>Cold Brew</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Americano</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Latte</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Spanish</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Caramel</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Lotus</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Pistachio</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Iced Mocha</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Strawberry Smoothie</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Mango Smoothie</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
 
         </div>
 
+      </div>
 
-        <div class="menu-tabs">
 
-            <button class="menu-tab active" data-category="hot">
-                <span data-en="Hot Coffee" data-ar="قهوة ساخنة">
-                    Hot Coffee
-                </span>
-            </button>
+      <!-- HOT -->
 
-            <button class="menu-tab" data-category="cold">
-                <span data-en="Cold Coffee" data-ar="قهوة باردة">
-                    Cold Coffee
-                </span>
-            </button>
+      <div class="menu-panel" id="hot">
 
-            <button class="menu-tab" data-category="desserts">
-                <span data-en="Desserts" data-ar="حلويات">
-                    Desserts
-                </span>
-            </button>
+        <div class="menu-grid">
 
-            <button class="menu-tab" data-category="other">
-                <span data-en="Other Drinks" data-ar="مشروبات أخرى">
-                    Other Drinks
-                </span>
-            </button>
+          <div class="menu-item">
+            <h3>Espresso</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Double Espresso</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Americano</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Latte</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Cappuccino</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Caramel Latte</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Spanish Latte</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Lotus Latte</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Pistachio Latte</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Mocha</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DESSERTS -->
+
+      <div class="menu-panel" id="desserts">
+
+        <div class="menu-grid">
+
+          <div class="menu-item">
+            <h3>Brownies</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Tiramisu</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Crunchy Chocolate</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Honey Cake</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
+
+          <div class="menu-item">
+            <h3>Strawberry Pudding</h3>
+            <span class="menu-price">0.00 SYP</span>
+          </div>
 
         </div>
 
-
-        <div class="menu-grid" id="menuGrid">
-
-            <!-- Hot Coffee -->
-
-            <article class="menu-item" data-category="hot">
-                <img
-                    src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80"
-                    alt="Espresso"
-                >
-                <div>
-                    <h3>Espresso</h3>
-                    <p data-en="Rich and intense double espresso."
-                       data-ar="إسبريسو غني وقوي.">
-                        Rich and intense double espresso.
-                    </p>
-                </div>
-                <strong>$3.00</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="hot">
-                <img
-                    src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=700&q=80"
-                    alt="Latte"
-                >
-                <div>
-                    <h3>Latte</h3>
-                    <p data-en="Espresso with silky steamed milk."
-                       data-ar="إسبريسو مع حليب مبخر ناعم.">
-                        Espresso with silky steamed milk.
-                    </p>
-                </div>
-                <strong>$4.50</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="hot">
-                <img
-                    src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=700&q=80"
-                    alt="Americano"
-                >
-                <div>
-                    <h3>Americano</h3>
-                    <p data-en="Espresso balanced with hot water."
-                       data-ar="إسبريسو مع ماء ساخن.">
-                        Espresso balanced with hot water.
-                    </p>
-                </div>
-                <strong>$3.50</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="hot">
-                <img
-                    src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=700&q=80"
-                    alt="Mocha"
-                >
-                <div>
-                    <h3>Mocha</h3>
-                    <p data-en="Espresso, chocolate and steamed milk."
-                       data-ar="إسبريسو، شوكولا وحليب مبخر.">
-                        Espresso, chocolate and steamed milk.
-                    </p>
-                </div>
-                <strong>$5.00</strong>
-            </article>
-
-
-            <!-- Cold Coffee -->
-
-            <article class="menu-item" data-category="cold">
-                <img
-                    src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=80"
-                    alt="Cold brew"
-                >
-                <div>
-                    <h3>Cold Brew</h3>
-                    <p data-en="Slow brewed coffee served over ice."
-                       data-ar="قهوة مستخلصة ببطء وتقدم مع الثلج.">
-                        Slow brewed coffee served over ice.
-                    </p>
-                </div>
-                <strong>$4.50</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="cold">
-                <img
-                    src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80"
-                    alt="Iced latte"
-                >
-                <div>
-                    <h3>Iced Latte</h3>
-                    <p data-en="Cold milk, espresso and ice."
-                       data-ar="حليب بارد، إسبريسو وثلج.">
-                        Cold milk, espresso and ice.
-                    </p>
-                </div>
-                <strong>$4.75</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="cold">
-                <img
-                    src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=80"
-                    alt="Caramel iced coffee"
-                >
-                <div>
-                    <h3>Caramel Iced Coffee</h3>
-                    <p data-en="Iced coffee with caramel and cream."
-                       data-ar="قهوة باردة مع الكراميل والكريمة.">
-                        Iced coffee with caramel and cream.
-                    </p>
-                </div>
-                <strong>$5.25</strong>
-            </article>
-
-
-            <!-- Desserts -->
-
-            <article class="menu-item" data-category="desserts">
-                <img
-                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
-                    alt="Chocolate cake"
-                >
-                <div>
-                    <h3>Chocolate Cake</h3>
-                    <p data-en="Soft chocolate cake with creamy frosting."
-                       data-ar="كيكة شوكولا طرية مع كريمة غنية.">
-                        Soft chocolate cake with creamy frosting.
-                    </p>
-                </div>
-                <strong>$4.75</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="desserts">
-                <img
-                    src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
-                    alt="Donut"
-                >
-                <div>
-                    <h3>Glazed Donut</h3>
-                    <p data-en="Fresh, soft and lightly glazed."
-                       data-ar="دونات طازجة وطرية بطبقة خفيفة.">
-                        Fresh, soft and lightly glazed.
-                    </p>
-                </div>
-                <strong>$3.25</strong>
-            </article>
-
-
-            <!-- Other -->
-
-            <article class="menu-item" data-category="other">
-                <img
-                    src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80"
-                    alt="Fresh juice"
-                >
-                <div>
-                    <h3>Fresh Orange Juice</h3>
-                    <p data-en="Freshly squeezed orange juice."
-                       data-ar="عصير برتقال طازج ومعصور يومياً.">
-                        Freshly squeezed orange juice.
-                    </p>
-                </div>
-                <strong>$3.50</strong>
-            </article>
-
-
-            <article class="menu-item" data-category="other">
-                <img
-                    src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=80"
-                    alt="Tea"
-                >
-                <div>
-                    <h3>Fresh Tea</h3>
-                    <p data-en="A selection of aromatic loose-leaf tea."
-                       data-ar="مجموعة من أنواع الشاي العطرية.">
-                        A selection of aromatic loose-leaf tea.
-                    </p>
-                </div>
-                <strong>$2.75</strong>
-            </article>
-
-        </div>
+      </div>
 
     </div>
-</section>
+
+  </section>
 
 
-<!-- ================= ABOUT ================= -->
+  <!-- ABOUT -->
 
-<section class="section about-section" id="about">
+  <section class="about" id="about">
 
     <div class="container about-grid">
 
-        <div class="about-image">
-            <img
-                src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=85"
-                alt="Coffee Time interior"
-            >
+      <div>
+
+        <div class="kicker">
+          Our story
         </div>
 
-        <div class="about-content">
+        <h2>
+          A little pause<br>
+          in your day.
+        </h2>
 
-            <span class="eyebrow dark"
-                  data-en="OUR STORY"
-                  data-ar="قصتنا">
-                OUR STORY
-            </span>
+        <p>
+          Coffee Time is a warm, relaxed space built around
+          good coffee, refreshing drinks and simple moments
+          worth staying for.
+        </p>
 
-            <h2 data-en="A little place for big coffee moments."
-                data-ar="مكان صغير للحظات قهوة كبيرة.">
-                A little place for big coffee moments.
-            </h2>
+      </div>
 
-            <p data-en="Coffee Time started with a simple idea: make genuinely good coffee and create a place where people actually want to stay."
-               data-ar="بدأ Coffee Time بفكرة بسيطة: نقدم قهوة جيدة فعلاً ونصنع مكاناً يحب الناس البقاء فيه.">
-                Coffee Time started with a simple idea: make genuinely good coffee and create a place where people actually want to stay.
-            </p>
 
-            <p data-en="We care about the details — from the beans we brew to the music playing in the background."
-               data-ar="نهتم بالتفاصيل — من حبوب القهوة التي نستخدمها إلى الموسيقى التي ترافق جلستك.">
-                We care about the details — from the beans we brew to the music playing in the background.
-            </p>
-
-            <div class="about-signature">
-                <span>CT</span>
-                <div>
-                    <strong>Coffee Time</strong>
-                    <small data-en="Coffee made with care."
-                           data-ar="قهوة مصنوعة بعناية.">
-                        Coffee made with care.
-                    </small>
-                </div>
-            </div>
-
-        </div>
+      <div class="about-image">
+        COFFEE TIME
+      </div>
 
     </div>
-</section>
+
+  </section>
 
 
-<!-- ================= GALLERY ================= -->
+  <!-- GALLERY -->
 
-<section class="section gallery-section" id="gallery">
+  <section id="gallery">
 
     <div class="container">
 
-        <div class="section-heading centered">
+      <div class="section-title">
 
-            <span class="eyebrow dark"
-                  data-en="INSIDE COFFEE TIME"
-                  data-ar="داخل COFFEE TIME">
-                INSIDE COFFEE TIME
-            </span>
-
-            <h2 data-en="Coffee, atmosphere, moments."
-                data-ar="قهوة، أجواء، لحظات.">
-                Coffee, atmosphere, moments.
-            </h2>
-
+        <div class="kicker">
+          Inside Coffee Time
         </div>
 
+        <h2>
+          Gallery
+        </h2>
 
-        <div class="gallery-grid">
+      </div>
 
-            <div class="gallery-item large">
-                <img
-                    src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1200&q=85"
-                    alt="Coffee shop"
-                >
-            </div>
 
-            <div class="gallery-item">
-                <img
-                    src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=85"
-                    alt="Coffee"
-                >
-            </div>
+      <div class="gallery-grid">
 
-            <div class="gallery-item">
-                <img
-                    src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=85"
-                    alt="Coffee shop interior"
-                >
-            </div>
-
-            <div class="gallery-item">
-                <img
-                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85"
-                    alt="Coffee cup"
-                >
-            </div>
-
-            <div class="gallery-item large">
-                <img
-                    src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=1200&q=85"
-                    alt="Coffee and dessert"
-                >
-            </div>
-
-            <div class="gallery-item">
-                <img
-                    src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=85"
-                    alt="Cafe interior"
-                >
-            </div>
-
+        <div class="gallery-item">
+          CAFE INTERIOR
         </div>
+
+        <div class="gallery-item">
+          COFFEE
+        </div>
+
+        <div class="gallery-item">
+          LATTE
+        </div>
+
+        <div class="gallery-item">
+          DESSERTS
+        </div>
+
+        <div class="gallery-item">
+          THE CAFE
+        </div>
+
+      </div>
 
     </div>
-</section>
+
+  </section>
 
 
-<!-- ================= REVIEWS ================= -->
+  <!-- VISIT -->
 
-<section class="section reviews-section">
+  <section class="visit" id="visit">
 
     <div class="container">
 
-        <div class="section-heading centered">
+      <div class="section-title">
 
-            <span class="eyebrow dark"
-                  data-en="FROM OUR GUESTS"
-                  data-ar="آراء زبائننا">
-                FROM OUR GUESTS
-            </span>
-
-            <h2 data-en="Good coffee. Better company."
-                data-ar="قهوة طيبة. ورفقة أطيب.">
-                Good coffee. Better company.
-            </h2>
-
+        <div class="kicker">
+          Come by
         </div>
 
+        <h2>
+          Visit us
+        </h2>
 
-        <div class="reviews-grid">
-
-            <article class="review">
-                <div class="stars">★★★★★</div>
-
-                <p data-en="“The coffee is excellent and the atmosphere is exactly what I look for in a cafe.”"
-                   data-ar="“القهوة ممتازة والأجواء بالضبط هيك بحب تكون الكافيهات.”">
-                    “The coffee is excellent and the atmosphere is exactly what I look for in a cafe.”
-                </p>
-
-                <strong>— Alex M.</strong>
-            </article>
+      </div>
 
 
-            <article class="review">
-                <div class="stars">★★★★★</div>
-
-                <p data-en="“Beautiful place, friendly staff and the Spanish latte is seriously addictive.”"
-                   data-ar="“مكان جميل، تعامل لطيف، والسبانيش لاتيه رهيب.”">
-                    “Beautiful place, friendly staff and the Spanish latte is seriously addictive.”
-                </p>
-
-                <strong>— Sarah K.</strong>
-            </article>
-
-
-            <article class="review">
-                <div class="stars">★★★★★</div>
-
-                <p data-en="“Perfect spot to work, meet friends or simply enjoy a quiet cup of coffee.”"
-                   data-ar="“مكان مثالي للدراسة أو لقاء الأصدقاء أو حتى قعدة قهوة هادية.”">
-                    “Perfect spot to work, meet friends or simply enjoy a quiet cup of coffee.”
-                </p>
-
-                <strong>— Omar A.</strong>
-            </article>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ================= HOURS + LOCATION ================= -->
-
-<section class="info-section">
-
-    <div class="container info-grid">
+      <div class="info-grid">
 
         <div class="info-card">
 
-            <span class="eyebrow dark"
-                  data-en="COME VISIT"
-                  data-ar="زورونا">
-                COME VISIT
-            </span>
+          <div class="info-icon">📍</div>
 
-            <h2 data-en="Opening Hours"
-                data-ar="أوقات الدوام">
-                Opening Hours
-            </h2>
+          <h3>
+            Location
+          </h3>
 
-            <div class="hours">
-
-                <div>
-                    <span data-en="Monday — Thursday"
-                          data-ar="الإثنين — الخميس">
-                        Monday — Thursday
-                    </span>
-                    <strong>8:00 AM — 12:00 AM</strong>
-                </div>
-
-                <div>
-                    <span data-en="Friday"
-                          data-ar="الجمعة">
-                        Friday
-                    </span>
-                    <strong>2:00 PM — 1:00 AM</strong>
-                </div>
-
-                <div>
-                    <span data-en="Saturday — Sunday"
-                          data-ar="السبت — الأحد">
-                        Saturday — Sunday
-                    </span>
-                    <strong>9:00 AM — 1:00 AM</strong>
-                </div>
-
-            </div>
+          <p>
+            Hama, Syria<br>
+            Exact address coming soon.
+          </p>
 
         </div>
 
 
-        <div class="info-card location-card">
+        <div class="info-card">
 
-            <span class="eyebrow dark"
-                  data-en="FIND US"
-                  data-ar="وين تلاقونا">
-                FIND US
-            </span>
+          <div class="info-icon">🕐</div>
 
-            <h2 data-en="Come say hello."
-                data-ar="نطّروا علينا.">
-                Come say hello.
-            </h2>
+          <h3>
+            Opening hours
+          </h3>
 
-            <p>
-                Coffee Time<br>
-                Main Street, Downtown<br>
-                Your City, Country
-            </p>
-
-            <div class="location-actions">
-
-                <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    class="btn btn-dark"
-                >
-                    <span data-en="Google Maps"
-                          data-ar="خرائط Google">
-                        Google Maps
-                    </span>
-                </a>
-
-                <a href="tel:+0000000000" class="phone-link">
-                    +00 000 000 000
-                </a>
-
-            </div>
+          <p>
+            Every day<br>
+            10:00 AM — 12:00 AM
+          </p>
 
         </div>
+
+
+        <div class="info-card">
+
+          <div class="info-icon">☕</div>
+
+          <h3>
+            Contact
+          </h3>
+
+          <p>
+            +963 000 000 000<br>
+            Instagram: @coffeetime
+          </p>
+
+        </div>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- ================= CONTACT CTA ================= -->
+  <!-- FOOTER -->
 
-<section class="contact-section" id="contact">
+  <footer>
 
-    <div class="container contact-inner">
+    <div class="container">
+
+      <div class="footer-top">
 
         <div>
 
-            <span class="eyebrow"
-                  data-en="LET'S TALK COFFEE"
-                  data-ar="خلينا نحكي قهوة">
-                LET'S TALK COFFEE
-            </span>
+          <a href="#home" class="logo">
+            <span class="bean"></span>
+            COFFEE TIME
+          </a>
 
-            <h2 data-en="Got a coffee craving?"
-                data-ar="اشتهيت قهوة؟">
-                Got a coffee craving?
-            </h2>
-
-            <p data-en="Order ahead, ask us anything or simply say hello."
-               data-ar="اطلب مسبقاً، اسألنا أي شي، أو حتى بس سلم علينا.">
-                Order ahead, ask us anything or simply say hello.
-            </p>
+          <p>
+            Good coffee, good time.
+            A warm cafe experience in Hama.
+          </p>
 
         </div>
 
 
-        <div class="contact-buttons">
+        <div class="social">
 
-            <a
-                href="https://wa.me/0000000000"
-                target="_blank"
-                class="contact-btn whatsapp"
-            >
-                <span>◉</span>
-                <span data-en="WhatsApp"
-                      data-ar="واتساب">
-                    WhatsApp
-                </span>
-            </a>
+          <a href="#">
+            Instagram
+          </a>
 
-            <a
-                href="https://instagram.com"
-                target="_blank"
-                class="contact-btn"
-            >
-                <span>◎</span>
-                <span>Instagram</span>
-            </a>
-
-            <a
-                href="tel:+0000000000"
-                class="contact-btn"
-            >
-                <span>☎</span>
-                <span data-en="Call us"
-                      data-ar="اتصل بنا">
-                    Call us
-                </span>
-            </a>
+          <a href="https://wa.me/963000000000">
+            WhatsApp
+          </a>
 
         </div>
+
+      </div>
+
+
+      <div class="copyright">
+        © 2026 Coffee Time. All rights reserved.
+      </div>
 
     </div>
 
-</section>
-
-</main>
+  </footer>
 
 
-<!-- ================= FOOTER ================= -->
+  <!-- FLOATING WHATSAPP -->
 
-<footer class="footer">
-
-    <div class="container footer-inner">
-
-        <div class="footer-brand">
-
-            <a href="#home" class="logo">
-                <span class="logo-mark">CT</span>
-                <span>Coffee Time</span>
-            </a>
-
-            <p data-en="Coffee made for good moments."
-               data-ar="قهوة معمولة للحظات الحلوة.">
-                Coffee made for good moments.
-            </p>
-
-        </div>
+  <a
+    class="whatsapp"
+    href="https://wa.me/963000000000"
+    target="_blank">
+    WhatsApp
+  </a>
 
 
-        <div class="footer-socials">
+  <!-- MENU SCRIPT -->
 
-            <a href="https://instagram.com" target="_blank">
-                Instagram
-            </a>
+  <script>
 
-            <a href="https://wa.me/0000000000" target="_blank">
-                WhatsApp
-            </a>
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".menu-panel");
 
-            <a href="tel:+0000000000">
-                Phone
-            </a>
+    tabs.forEach(tab => {
 
-        </div>
+      tab.addEventListener("click", () => {
 
-    </div>
+        tabs.forEach(t => {
+          t.classList.remove("active");
+        });
 
+        panels.forEach(panel => {
+          panel.classList.remove("active");
+        });
 
-    <div class="footer-bottom container">
+        tab.classList.add("active");
 
-        <span>
-            © <span id="year"></span> Coffee Time.
-        </span>
+        document
+          .getElementById(tab.dataset.target)
+          .classList.add("active");
 
-        <span data-en="All rights reserved."
-              data-ar="جميع الحقوق محفوظة.">
-            All rights reserved.
-        </span>
+      });
 
-    </div>
+    });
 
-</footer>
-
-
-<script src="script.js"></script>
+  </script>
 
 </body>
 </html>
