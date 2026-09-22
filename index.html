@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Coffee Time | Hama</title>
-  <meta name="description" content="Coffee Time — good coffee, good time.">
+
+  <meta name="description" content="Coffee Time — premium coffee, cold drinks and desserts in Hama.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
-
     :root {
-      --brown: #4b2e22;
-      --brown-light: #76503d;
+      --brown: #4a2c20;
+      --brown-dark: #2d1a13;
       --cream: #f7f1e8;
-      --white: #fffdf9;
-      --text: #2d211c;
-      --muted: #806f63;
-      --border: #e7dbcf;
+      --cream-dark: #eee3d4;
+      --white: #ffffff;
+      --text: #30231e;
+      --muted: #7b6b62;
+      --border: #e5d9cc;
+      --shadow: 0 15px 45px rgba(55, 34, 23, 0.10);
     }
 
     * {
@@ -35,186 +41,299 @@
       background: var(--white);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    html[dir="rtl"] body {
+      font-family: "Tajawal", sans-serif;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
-    .container {
-      width: min(1120px, calc(100% - 36px));
-      margin: auto;
+    button {
+      font-family: inherit;
     }
 
-    /* NAVBAR */
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    nav {
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
-      background: rgba(255,253,249,.92);
+      z-index: 1000;
+      background: rgba(255,255,255,0.94);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(231,219,207,.7);
+      border-bottom: 1px solid rgba(229,217,204,0.7);
     }
 
-    .nav {
-      height: 76px;
+    .nav-container {
+      max-width: 1180px;
+      margin: auto;
+      height: 78px;
+      padding: 0 25px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 25px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: .08em;
-      font-size: 14px;
+      color: var(--brown);
+      white-space: nowrap;
     }
 
-    /* Coffee bean logo */
-
-    .bean {
-      width: 28px;
-      height: 38px;
-      background: var(--brown);
+    .bean-logo {
+      width: 26px;
+      height: 34px;
       border-radius: 50% 45% 50% 45%;
-      transform: rotate(35deg);
+      background: var(--brown);
+      transform: rotate(25deg);
       position: relative;
     }
 
-    .bean::after {
+    .bean-logo::after {
       content: "";
       position: absolute;
       width: 3px;
-      height: 27px;
-      background: #ead9c8;
+      height: 23px;
+      background: var(--cream);
       border-radius: 50%;
-      left: 12px;
-      top: 6px;
-      transform: rotate(20deg);
+      left: 11px;
+      top: 5px;
+      transform: rotate(-15deg);
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
+      align-items: center;
+      gap: 30px;
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text);
+    }
+
+    .nav-links a {
+      transition: 0.2s;
     }
 
     .nav-links a:hover {
       color: var(--brown);
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language-button {
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--brown);
+      padding: 10px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .language-button:hover {
+      background: var(--cream);
+    }
+
     .nav-button {
       background: var(--brown);
       color: white;
-      padding: 11px 18px;
+      padding: 11px 17px;
       border-radius: 30px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
+      transition: 0.2s;
     }
 
-    /* HERO */
+    .nav-button:hover {
+      background: var(--brown-dark);
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
-      min-height: 760px;
-      padding-top: 76px;
+      min-height: 720px;
+      padding: 150px 25px 90px;
       display: flex;
       align-items: center;
-
+      position: relative;
       background:
-        linear-gradient(90deg, rgba(35,20,14,.78), rgba(35,20,14,.25)),
-        url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=85")
-        center / cover;
+        linear-gradient(
+          90deg,
+          rgba(36, 21, 15, 0.84),
+          rgba(36, 21, 15, 0.48),
+          rgba(36, 21, 15, 0.25)
+        ),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+    }
+
+    html[dir="rtl"] .hero {
+      background:
+        linear-gradient(
+          270deg,
+          rgba(36, 21, 15, 0.84),
+          rgba(36, 21, 15, 0.48),
+          rgba(36, 21, 15, 0.25)
+        ),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
     }
 
     .hero-content {
+      max-width: 1180px;
+      width: 100%;
+      margin: auto;
       color: white;
-      max-width: 700px;
-      padding: 80px 0;
+    }
+
+    .hero-inner {
+      max-width: 610px;
     }
 
     .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: .25em;
-      font-size: 11px;
       margin-bottom: 20px;
-      opacity: .9;
+      opacity: 0.9;
     }
 
-    h1,
-    h2,
-    h3 {
+    .eyebrow::before {
+      content: "";
+      width: 25px;
+      height: 1px;
+      background: white;
+    }
+
+    .hero h1 {
       font-family: "Playfair Display", serif;
-    }
-
-    h1 {
-      font-size: clamp(60px, 9vw, 105px);
-      line-height: .92;
+      font-size: clamp(52px, 8vw, 92px);
+      line-height: 0.98;
+      margin-bottom: 25px;
       font-weight: 600;
     }
 
     .hero p {
-      max-width: 500px;
-      margin: 25px 0 32px;
-      color: #f3eae2;
+      max-width: 560px;
       font-size: 17px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 32px;
     }
 
-    .buttons {
+    .hero-buttons {
       display: flex;
+      align-items: center;
       gap: 12px;
       flex-wrap: wrap;
     }
 
-    .button {
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 14px 23px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .button-white {
       background: white;
       color: var(--brown);
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 13px;
+      transition: 0.2s;
     }
 
-    .button-outline {
-      border: 1px solid rgba(255,255,255,.7);
+    .primary-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 23px;
+      border: 1px solid rgba(255,255,255,0.55);
       color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: 0.2s;
     }
 
-    /* GENERAL SECTIONS */
-
-    section {
-      padding: 100px 0;
+    .secondary-button:hover {
+      background: rgba(255,255,255,0.1);
     }
 
-    .section-title {
-      margin-bottom: 40px;
+    /* =========================
+       GENERAL
+    ========================= */
+
+    .section {
+      padding: 100px 25px;
     }
 
-    .kicker {
-      color: var(--brown-light);
+    .container {
+      max-width: 1180px;
+      margin: auto;
+    }
+
+    .section-heading {
+      margin-bottom: 45px;
+    }
+
+    .section-label {
+      color: var(--brown);
       text-transform: uppercase;
-      letter-spacing: .2em;
+      letter-spacing: 2px;
       font-size: 11px;
       font-weight: 700;
       margin-bottom: 9px;
     }
 
-    h2 {
-      font-size: clamp(40px, 5vw, 58px);
-      line-height: 1.05;
-      font-weight: 600;
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.1;
+      color: var(--brown-dark);
     }
 
-    /* POPULAR */
+    .section-subtitle {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 15px;
+    }
+
+    /* =========================
+       POPULAR
+    ========================= */
 
     .popular {
       background: var(--cream);
@@ -222,111 +341,133 @@
 
     .popular-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
 
-    .product-card {
+    .popular-card {
       background: white;
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
     }
 
-    .product-image {
-      height: 220px;
+    .popular-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .popular-image {
+      height: 260px;
       background:
-        linear-gradient(135deg, #76503d, #d8c0aa);
+        linear-gradient(135deg, #cbb19c, #6c4937);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,.8);
-      font-size: 12px;
-      letter-spacing: .08em;
-    }
-
-    .product-info {
-      padding: 18px;
-    }
-
-    .product-info h3 {
-      font-size: 21px;
-    }
-
-    .price {
-      margin-top: 5px;
-      color: var(--brown);
-      font-weight: 700;
+      color: rgba(255,255,255,0.9);
       font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    /* MENU */
+    .popular-info {
+      padding: 20px;
+    }
+
+    .popular-info h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--brown-dark);
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .popular-info p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       MENU
+    ========================= */
 
     .menu-tabs {
       display: flex;
-      gap: 9px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 25px;
+      margin-bottom: 38px;
     }
 
-    .tab {
+    .menu-tab {
       border: 1px solid var(--border);
       background: white;
       color: var(--muted);
-      padding: 10px 17px;
+      padding: 11px 18px;
       border-radius: 30px;
       cursor: pointer;
-      font-family: inherit;
+      font-size: 13px;
+      transition: 0.2s;
     }
 
-    .tab.active {
+    .menu-tab.active,
+    .menu-tab:hover {
       background: var(--brown);
       color: white;
       border-color: var(--brown);
     }
 
-    .menu-panel {
-      display: none;
-    }
-
-    .menu-panel.active {
-      display: block;
-    }
-
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 16px;
+    }
+
+    .menu-category {
+      display: none;
+    }
+
+    .menu-category.active {
+      display: block;
     }
 
     .menu-item {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px 20px;
+      min-height: 92px;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      background: white;
+      gap: 18px;
+      justify-content: space-between;
+    }
+
+    .menu-item-info {
+      flex: 1;
     }
 
     .menu-item h3 {
-      font-size: 18px;
-      font-weight: 600;
+      font-family: "Playfair Display", serif;
+      font-size: 19px;
+      color: var(--brown-dark);
+      margin-bottom: 4px;
     }
 
-    .menu-price {
-      white-space: nowrap;
-      color: var(--brown);
+    .menu-item p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .price {
       font-weight: 700;
+      color: var(--brown);
+      white-space: nowrap;
       font-size: 13px;
     }
 
-    /* ABOUT */
+    /* =========================
+       ABOUT
+    ========================= */
 
     .about {
-      background: var(--brown);
-      color: white;
+      background: var(--cream);
     }
 
     .about-grid {
@@ -336,222 +477,252 @@
       align-items: center;
     }
 
-    .about .kicker {
-      color: #d7bda7;
-    }
-
-    .about h2 {
-      margin-bottom: 22px;
-    }
-
-    .about p {
-      color: #eaded4;
-      max-width: 500px;
-    }
-
     .about-image {
-      height: 500px;
-      border-radius: 28px;
+      min-height: 500px;
+      border-radius: 22px;
       background:
-        linear-gradient(135deg, #76503d, #2e1d16);
+        linear-gradient(135deg, #d5c1ac, #75513e);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #dfcbbb;
-      letter-spacing: .1em;
+      color: white;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       font-size: 12px;
     }
 
-    /* GALLERY */
+    .about-text p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .about-signature {
+      font-family: "Playfair Display", serif;
+      color: var(--brown);
+      font-size: 23px;
+    }
+
+    /* =========================
+       GALLERY
+    ========================= */
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
       grid-template-rows: 250px 250px;
       gap: 14px;
     }
 
     .gallery-item {
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--cream);
+      border-radius: 16px;
+      background: linear-gradient(135deg, #cdb6a0, #604333);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--brown-light);
-      font-size: 12px;
+      color: white;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      overflow: hidden;
     }
 
     .gallery-item:first-child {
       grid-row: span 2;
     }
 
-    /* INFO */
+    .gallery-item:nth-child(2) {
+      background: linear-gradient(135deg, #e3d1bd, #8d654c);
+    }
+
+    .gallery-item:nth-child(3) {
+      background: linear-gradient(135deg, #a98a72, #4d3023);
+    }
+
+    .gallery-item:nth-child(4) {
+      background: linear-gradient(135deg, #c5a990, #76513d);
+    }
+
+    .gallery-item:nth-child(5) {
+      background: linear-gradient(135deg, #e0cdb8, #694838);
+    }
+
+    /* =========================
+       VISIT
+    ========================= */
 
     .visit {
-      background: var(--cream);
+      background: var(--brown-dark);
+      color: white;
     }
 
-    .info-grid {
+    .visit .section-label {
+      color: #d8bda4;
+    }
+
+    .visit .section-title {
+      color: white;
+    }
+
+    .visit-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: start;
     }
 
-    .info-card {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 28px;
-      border-radius: 22px;
+    .visit-description {
+      color: rgba(255,255,255,0.68);
+      margin-top: 18px;
+      max-width: 500px;
+      line-height: 1.8;
     }
 
-    .info-icon {
-      font-size: 24px;
-      margin-bottom: 12px;
+    .visit-details {
+      display: grid;
+      gap: 25px;
     }
 
-    .info-card h3 {
-      font-size: 24px;
-      margin-bottom: 8px;
+    .detail {
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 20px;
     }
 
-    .info-card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: #251813;
-      color: #eaded5;
-      padding: 55px 0 25px;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    footer .logo {
-      color: white;
-    }
-
-    footer .bean {
-      background: #c8a98f;
-    }
-
-    footer p {
-      color: #9d897d;
-      font-size: 13px;
-      max-width: 350px;
-      margin-top: 14px;
-    }
-
-    .social {
-      display: flex;
-      gap: 10px;
-    }
-
-    .social a {
-      border: 1px solid #59463b;
-      padding: 9px 14px;
-      border-radius: 30px;
-      font-size: 12px;
-    }
-
-    .copyright {
-      border-top: 1px solid #403129;
-      margin-top: 40px;
-      padding-top: 20px;
-      color: #806e63;
+    .detail-label {
+      color: #cdb29a;
       font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 5px;
     }
 
-    /* WHATSAPP */
-
-    .whatsapp {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 200;
-      background: #27814b;
+    .detail-value {
+      font-size: 15px;
       color: white;
-      padding: 13px 18px;
+    }
+
+    .map-button {
+      display: inline-flex;
+      margin-top: 30px;
+      background: white;
+      color: var(--brown-dark);
+      padding: 13px 20px;
       border-radius: 30px;
       font-size: 13px;
       font-weight: 700;
-      box-shadow: 0 12px 35px rgba(0,0,0,.2);
     }
 
-    /* MOBILE */
+    /* =========================
+       FOOTER
+    ========================= */
 
-    @media (max-width: 850px) {
+    footer {
+      background: #21140f;
+      color: rgba(255,255,255,0.65);
+      padding: 45px 25px;
+    }
+
+    .footer-container {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: "Playfair Display", serif;
+      color: white;
+      font-size: 21px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+    }
+
+    .footer-social a:hover {
+      color: white;
+    }
+
+    /* =========================
+       WHATSAPP
+    ========================= */
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: 0.2s;
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    html[dir="rtl"] .whatsapp {
+      right: auto;
+      left: 22px;
+    }
+
+    /* =========================
+       RTL
+    ========================= */
+
+    html[dir="rtl"] .hero-content,
+    html[dir="rtl"] .section-heading,
+    html[dir="rtl"] .about-text {
+      text-align: right;
+    }
+
+    html[dir="rtl"] .eyebrow::before {
+      order: 2;
+    }
+
+    html[dir="rtl"] .hero-buttons {
+      justify-content: flex-start;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
 
       .nav-links {
         display: none;
       }
 
       .popular-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
       }
 
-      .about-grid {
+      .about-grid,
+      .visit-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
       }
 
       .about-image {
-        order: -1;
-        height: 380px;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 220px 220px;
-      }
-    }
-
-    @media (max-width: 560px) {
-
-      .container {
-        width: calc(100% - 28px);
-      }
-
-      .hero {
-        min-height: 650px;
-      }
-
-      h1 {
-        font-size: 58px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      section {
-        padding: 75px 0;
-      }
-
-      .popular-grid {
-        gap: 10px;
-      }
-
-      .product-image {
-        height: 160px;
-      }
-
-      .product-info {
-        padding: 13px;
-      }
-
-      .product-info h3 {
-        font-size: 17px;
+        min-height: 380px;
       }
 
       .menu-grid {
@@ -560,15 +731,81 @@
 
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 180px 180px;
+        grid-template-rows: 230px 180px 180px;
       }
 
-      .footer-top {
-        display: block;
+      .gallery-item:first-child {
+        grid-row: span 1;
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .nav-container {
+        height: 70px;
+        padding: 0 17px;
       }
 
-      .social {
-        margin-top: 25px;
+      .logo {
+        font-size: 19px;
+      }
+
+      .bean-logo {
+        width: 22px;
+        height: 29px;
+      }
+
+      .nav-button {
+        display: none;
+      }
+
+      .language-button {
+        padding: 9px 12px;
+      }
+
+      .hero {
+        min-height: 680px;
+        padding: 125px 20px 70px;
+      }
+
+      .hero h1 {
+        font-size: 57px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .section {
+        padding: 75px 20px;
+      }
+
+      .section-title {
+        font-size: 40px;
+      }
+
+      .popular-image {
+        height: 220px;
+      }
+
+      .about-image {
+        min-height: 300px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 190px 150px 150px;
+        gap: 9px;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      html[dir="rtl"] .footer-container {
+        align-items: flex-start;
       }
     }
   </style>
@@ -576,62 +813,102 @@
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
-  <nav>
-    <div class="container nav">
+  <header class="navbar">
+    <div class="nav-container">
 
-      <a href="#home" class="logo">
-        <span class="bean"></span>
-        COFFEE TIME
+      <a href="#" class="logo">
+        <span class="bean-logo"></span>
+        Coffee Time
       </a>
 
-      <div class="nav-links">
-        <a href="#menu">Menu</a>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#visit">Visit</a>
+      <nav class="nav-links">
+        <a href="#menu"
+           data-en="Menu"
+           data-ar="المنيو">Menu</a>
+
+        <a href="#about"
+           data-en="About"
+           data-ar="عن الكافيه">About</a>
+
+        <a href="#gallery"
+           data-en="Gallery"
+           data-ar="الصور">Gallery</a>
+
+        <a href="#visit"
+           data-en="Visit"
+           data-ar="زورونا">Visit</a>
+      </nav>
+
+      <div class="nav-actions">
+
+        <button
+          id="languageButton"
+          class="language-button"
+          onclick="toggleLanguage()">
+          العربية
+        </button>
+
+        <a href="#menu"
+           class="nav-button"
+           data-en="View Menu"
+           data-ar="عرض المنيو">
+          View Menu
+        </a>
+
       </div>
 
-      <a href="#menu" class="nav-button">
-        View Menu
-      </a>
-
     </div>
-  </nav>
+  </header>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
-  <section class="hero" id="home">
+  <section class="hero">
 
-    <div class="container">
+    <div class="hero-content">
 
-      <div class="hero-content">
+      <div class="hero-inner">
 
-        <div class="eyebrow">
+        <div class="eyebrow"
+             data-en="Coffee · Hama"
+             data-ar="قهوة · حماة">
           Coffee · Hama
         </div>
 
-        <h1>
+        <h1
+          data-en="Good coffee.<br>Good time."
+          data-ar="قهوة طيبة.<br>وقت أجمل.">
           Good coffee.<br>
           Good time.
         </h1>
 
-        <p>
-          A warm place for carefully made coffee,
-          refreshing drinks and something sweet on the side.
+        <p
+          data-en="A warm place for good coffee, good conversations and a little pause from the day."
+          data-ar="مكان دافئ للقهوة الطيبة، الأحاديث الجميلة، واستراحة صغيرة من ضجيج اليوم.">
+          A warm place for good coffee, good conversations and a little pause from the day.
         </p>
 
-        <div class="buttons">
+        <div class="hero-buttons">
 
-          <a href="#menu" class="button button-white">
+          <a href="#menu"
+             class="primary-button"
+             data-en="Explore Menu"
+             data-ar="استكشف المنيو">
             Explore Menu
           </a>
 
           <a href="https://wa.me/963000000000"
-             class="button button-outline">
-            WhatsApp
+             target="_blank"
+             class="secondary-button"
+             data-en="Order on WhatsApp"
+             data-ar="اطلب عبر واتساب">
+            Order on WhatsApp
           </a>
 
         </div>
@@ -643,81 +920,118 @@
   </section>
 
 
-  <!-- POPULAR -->
+  <!-- =========================
+       POPULAR
+  ========================= -->
 
-  <section class="popular">
+  <section class="section popular">
 
     <div class="container">
 
-      <div class="section-title">
+      <div class="section-heading">
 
-        <div class="kicker">
-          A few favorites
+        <div class="section-label"
+             data-en="Popular Picks"
+             data-ar="الأكثر طلباً">
+          Popular Picks
         </div>
 
-        <h2>
-          Popular picks
+        <h2 class="section-title"
+            data-en="A few favorites."
+            data-ar="بعض المفضلات.">
+          A few favorites.
         </h2>
+
+        <p class="section-subtitle"
+           data-en="Some of the drinks our guests keep coming back for."
+           data-ar="بعض المشروبات التي يعود ضيوفنا لطلبها مرة بعد مرة.">
+          Some of the drinks our guests keep coming back for.
+        </p>
 
       </div>
 
 
       <div class="popular-grid">
 
-        <div class="product-card">
+        <article class="popular-card">
 
-          <div class="product-image">
-            ICED SPANISH
+          <div class="popular-image"
+               data-en="Coffee"
+               data-ar="قهوة">
+            Coffee
           </div>
 
-          <div class="product-info">
-            <h3>Iced Spanish</h3>
-            <div class="price">0.00 SYP</div>
+          <div class="popular-info">
+
+            <h3
+              data-en="Spanish Latte"
+              data-ar="سبانيش لاتيه">
+              Spanish Latte
+            </h3>
+
+            <p
+              data-en="Smooth espresso with creamy sweetness."
+              data-ar="إسبريسو ناعم مع حلاوة كريمية.">
+              Smooth espresso with creamy sweetness.
+            </p>
+
           </div>
 
-        </div>
+        </article>
 
 
-        <div class="product-card">
+        <article class="popular-card">
 
-          <div class="product-image">
-            SPANISH LATTE
+          <div class="popular-image"
+               data-en="Cold Drink"
+               data-ar="مشروب بارد">
+            Cold Drink
           </div>
 
-          <div class="product-info">
-            <h3>Spanish Latte</h3>
-            <div class="price">0.00 SYP</div>
+          <div class="popular-info">
+
+            <h3
+              data-en="Iced Caramel"
+              data-ar="آيس كراميل">
+              Iced Caramel
+            </h3>
+
+            <p
+              data-en="Cold, creamy and lightly caramelized."
+              data-ar="بارد، كريمي ولمسة كراميل خفيفة.">
+              Cold, creamy and lightly caramelized.
+            </p>
+
           </div>
 
-        </div>
+        </article>
 
 
-        <div class="product-card">
+        <article class="popular-card">
 
-          <div class="product-image">
-            PISTACHIO
+          <div class="popular-image"
+               data-en="Dessert"
+               data-ar="حلويات">
+            Dessert
           </div>
 
-          <div class="product-info">
-            <h3>Pistachio Latte</h3>
-            <div class="price">0.00 SYP</div>
+          <div class="popular-info">
+
+            <h3
+              data-en="Tiramisu"
+              data-ar="تيراميسو">
+              Tiramisu
+            </h3>
+
+            <p
+              data-en="Soft, creamy and made for coffee time."
+              data-ar="ناعم، كريمي ومثالي مع وقت القهوة.">
+              Soft, creamy and made for coffee time.
+            </p>
+
           </div>
 
-        </div>
-
-
-        <div class="product-card">
-
-          <div class="product-image">
-            TIRAMISU
-          </div>
-
-          <div class="product-info">
-            <h3>Tiramisu</h3>
-            <div class="price">0.00 SYP</div>
-          </div>
-
-        </div>
+        </article>
 
       </div>
 
@@ -726,96 +1040,147 @@
   </section>
 
 
-  <!-- MENU -->
+  <!-- =========================
+       MENU
+  ========================= -->
 
-  <section id="menu">
+  <section class="section" id="menu">
 
     <div class="container">
 
-      <div class="section-title">
+      <div class="section-heading">
 
-        <div class="kicker">
-          Our selection
+        <div class="section-label"
+             data-en="Menu"
+             data-ar="المنيو">
+          Menu
         </div>
 
-        <h2>
-          The menu
+        <h2 class="section-title"
+            data-en="Our selection."
+            data-ar="اختياراتنا.">
+          Our selection.
         </h2>
+
+        <p class="section-subtitle"
+           data-en="Fresh drinks and desserts, made for every mood."
+           data-ar="مشروبات وحلويات لكل مزاج.">
+          Fresh drinks and desserts, made for every mood.
+        </p>
 
       </div>
 
 
       <div class="menu-tabs">
 
-        <button class="tab active" data-target="cold">
+        <button class="menu-tab active"
+                data-category="cold"
+                data-en="Cold Drinks"
+                data-ar="مشروبات باردة">
           Cold Drinks
         </button>
 
-        <button class="tab" data-target="hot">
+        <button class="menu-tab"
+                data-category="hot"
+                data-en="Hot Drinks"
+                data-ar="مشروبات ساخنة">
           Hot Drinks
         </button>
 
-        <button class="tab" data-target="desserts">
+        <button class="menu-tab"
+                data-category="desserts"
+                data-en="Desserts"
+                data-ar="حلويات">
           Desserts
         </button>
 
       </div>
 
 
-      <!-- COLD -->
+      <!-- COLD DRINKS -->
 
-      <div class="menu-panel active" id="cold">
+      <div class="menu-category active" id="cold">
 
         <div class="menu-grid">
 
           <div class="menu-item">
-            <h3>Cold Brew</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Cold Brew" data-ar="كولد برو">Cold Brew</h3>
+              <p data-en="Smooth cold-brewed coffee." data-ar="قهوة باردة ناعمة.">Smooth cold-brewed coffee.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Americano</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Americano" data-ar="آيس أمريكانو">Iced Americano</h3>
+              <p data-en="Espresso, water and ice." data-ar="إسبريسو، ماء وثلج.">Espresso, water and ice.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Latte</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Latte" data-ar="آيس لاتيه">Iced Latte</h3>
+              <p data-en="Creamy espresso over ice." data-ar="إسبريسو كريمي مع الثلج.">Creamy espresso over ice.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Spanish</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Spanish" data-ar="آيس سبانيش">Iced Spanish</h3>
+              <p data-en="Sweet milk and espresso." data-ar="حليب حلو مع الإسبريسو.">Sweet milk and espresso.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Caramel</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Caramel" data-ar="آيس كراميل">Iced Caramel</h3>
+              <p data-en="Cold latte with caramel." data-ar="لاتيه بارد مع الكراميل.">Cold latte with caramel.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Lotus</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Lotus" data-ar="آيس لوتس">Iced Lotus</h3>
+              <p data-en="Creamy coffee with Lotus flavor." data-ar="قهوة كريمية بنكهة اللوتس.">Creamy coffee with Lotus flavor.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Pistachio</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Pistachio" data-ar="آيس بستاشيو">Iced Pistachio</h3>
+              <p data-en="Cold coffee with pistachio." data-ar="قهوة باردة مع البستاشيو.">Cold coffee with pistachio.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Iced Mocha</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Iced Mocha" data-ar="آيس موكا">Iced Mocha</h3>
+              <p data-en="Chocolate, espresso and milk." data-ar="شوكولا، إسبريسو وحليب.">Chocolate, espresso and milk.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Strawberry Smoothie</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Strawberry Smoothie" data-ar="سموذي فراولة">Strawberry Smoothie</h3>
+              <p data-en="Fresh strawberry smoothie." data-ar="سموذي فراولة منعش.">Fresh strawberry smoothie.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Mango Smoothie</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Mango Smoothie" data-ar="سموذي مانجو">Mango Smoothie</h3>
+              <p data-en="Fresh and tropical mango." data-ar="مانجو منعش بطابع استوائي.">Fresh and tropical mango.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
         </div>
@@ -823,60 +1188,90 @@
       </div>
 
 
-      <!-- HOT -->
+      <!-- HOT DRINKS -->
 
-      <div class="menu-panel" id="hot">
+      <div class="menu-category" id="hot">
 
         <div class="menu-grid">
 
           <div class="menu-item">
-            <h3>Espresso</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Espresso" data-ar="إسبريسو">Espresso</h3>
+              <p data-en="Classic concentrated coffee." data-ar="قهوة كلاسيكية مركزة.">Classic concentrated coffee.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Double Espresso</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Double Espresso" data-ar="إسبريسو دبل">Double Espresso</h3>
+              <p data-en="A double shot of espresso." data-ar="شوتين من الإسبريسو.">A double shot of espresso.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Americano</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Americano" data-ar="أمريكانو">Americano</h3>
+              <p data-en="Espresso with hot water." data-ar="إسبريسو مع الماء الساخن.">Espresso with hot water.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Latte</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Latte" data-ar="لاتيه">Latte</h3>
+              <p data-en="Espresso with steamed milk." data-ar="إسبريسو مع الحليب المبخر.">Espresso with steamed milk.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Cappuccino</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Cappuccino" data-ar="كابتشينو">Cappuccino</h3>
+              <p data-en="Espresso, milk and silky foam." data-ar="إسبريسو، حليب ورغوة ناعمة.">Espresso, milk and silky foam.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Caramel Latte</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Caramel Latte" data-ar="كراميل لاتيه">Caramel Latte</h3>
+              <p data-en="Creamy latte with caramel." data-ar="لاتيه كريمي مع الكراميل.">Creamy latte with caramel.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Spanish Latte</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Spanish Latte" data-ar="سبانيش لاتيه">Spanish Latte</h3>
+              <p data-en="Espresso with sweet creamy milk." data-ar="إسبريسو مع حليب كريمي حلو.">Espresso with sweet creamy milk.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Lotus Latte</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Lotus Latte" data-ar="لوتس لاتيه">Lotus Latte</h3>
+              <p data-en="Latte with Lotus flavor." data-ar="لاتيه بنكهة اللوتس.">Latte with Lotus flavor.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Pistachio Latte</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Pistachio Latte" data-ar="بستاشيو لاتيه">Pistachio Latte</h3>
+              <p data-en="Creamy pistachio latte." data-ar="لاتيه كريمي بنكهة البستاشيو.">Creamy pistachio latte.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Mocha</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Mocha" data-ar="موكا">Mocha</h3>
+              <p data-en="Chocolate and espresso with milk." data-ar="شوكولا وإسبريسو مع الحليب.">Chocolate and espresso with milk.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
         </div>
@@ -886,33 +1281,48 @@
 
       <!-- DESSERTS -->
 
-      <div class="menu-panel" id="desserts">
+      <div class="menu-category" id="desserts">
 
         <div class="menu-grid">
 
           <div class="menu-item">
-            <h3>Brownies</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Brownies" data-ar="براونيز">Brownies</h3>
+              <p data-en="Rich chocolate brownie." data-ar="براونيز شوكولا غني.">Rich chocolate brownie.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Tiramisu</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Tiramisu" data-ar="تيراميسو">Tiramisu</h3>
+              <p data-en="Classic creamy Italian dessert." data-ar="حلوى إيطالية كلاسيكية وكريمية.">Classic creamy Italian dessert.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Crunchy Chocolate</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Crunchy Chocolate" data-ar="شوكولا كرانشي">Crunchy Chocolate</h3>
+              <p data-en="Chocolate dessert with a crunchy texture." data-ar="حلوى شوكولا بقوام مقرمش.">Chocolate dessert with a crunchy texture.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Honey Cake</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Honey Cake" data-ar="كيك العسل">Honey Cake</h3>
+              <p data-en="Soft cake with a delicate honey flavor." data-ar="كيك طري بنكهة عسل خفيفة.">Soft cake with a delicate honey flavor.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
           <div class="menu-item">
-            <h3>Strawberry Pudding</h3>
-            <span class="menu-price">0.00 SYP</span>
+            <div class="menu-item-info">
+              <h3 data-en="Strawberry Pudding" data-ar="بودينغ الفراولة">Strawberry Pudding</h3>
+              <p data-en="Creamy strawberry dessert." data-ar="حلوى فراولة كريمية.">Creamy strawberry dessert.</p>
+            </div>
+            <span class="price">0.00 SYP</span>
           </div>
 
         </div>
@@ -924,155 +1334,122 @@
   </section>
 
 
-  <!-- ABOUT -->
+  <!-- =========================
+       ABOUT
+  ========================= -->
 
-  <section class="about" id="about">
-
-    <div class="container about-grid">
-
-      <div>
-
-        <div class="kicker">
-          Our story
-        </div>
-
-        <h2>
-          A little pause<br>
-          in your day.
-        </h2>
-
-        <p>
-          Coffee Time is a warm, relaxed space built around
-          good coffee, refreshing drinks and simple moments
-          worth staying for.
-        </p>
-
-      </div>
-
-
-      <div class="about-image">
-        COFFEE TIME
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- GALLERY -->
-
-  <section id="gallery">
+  <section class="section about" id="about">
 
     <div class="container">
 
-      <div class="section-title">
+      <div class="about-grid">
 
-        <div class="kicker">
-          Inside Coffee Time
+        <div class="about-image"
+             data-en="Coffee Time"
+             data-ar="Coffee Time">
+          Coffee Time
         </div>
 
-        <h2>
+        <div class="about-text">
+
+          <div class="section-label"
+               data-en="Our Story"
+               data-ar="قصتنا">
+            Our Story
+          </div>
+
+          <h2 class="section-title"
+              data-en="A little pause in your day."
+              data-ar="استراحة صغيرة في يومك.">
+            A little pause in your day.
+          </h2>
+
+          <p
+            data-en="Coffee Time is a place built around simple things: great coffee, warm conversations and a comfortable atmosphere."
+            data-ar="Coffee Time هو مكان مبني على أشياء بسيطة: قهوة طيبة، أحاديث جميلة، وأجواء مريحة.">
+            Coffee Time is a place built around simple things: great coffee, warm conversations and a comfortable atmosphere.
+          </p>
+
+          <p
+            data-en="Whether you are meeting friends, working for a while or simply enjoying your coffee alone, we want every visit to feel easy and memorable."
+            data-ar="سواء كنت تلتقي بأصدقائك، تعمل لبعض الوقت، أو تستمتع بقهوة هادئة لوحدك، نريد لكل زيارة أن تكون مريحة ومميزة.">
+            Whether you are meeting friends, working for a while or simply enjoying your coffee alone, we want every visit to feel easy and memorable.
+          </p>
+
+          <div class="about-signature">
+            Coffee Time
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       GALLERY
+  ========================= -->
+
+  <section class="section" id="gallery">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="section-label"
+             data-en="Gallery"
+             data-ar="الصور">
           Gallery
+        </div>
+
+        <h2 class="section-title"
+            data-en="Inside Coffee Time."
+            data-ar="داخل Coffee Time.">
+          Inside Coffee Time.
         </h2>
+
+        <p class="section-subtitle"
+           data-en="A glimpse of the atmosphere."
+           data-ar="لمحة عن أجوائنا.">
+          A glimpse of the atmosphere.
+        </p>
 
       </div>
 
 
       <div class="gallery-grid">
 
-        <div class="gallery-item">
-          CAFE INTERIOR
+        <div class="gallery-item"
+             data-en="Coffee"
+             data-ar="قهوة">
+          Coffee
         </div>
 
-        <div class="gallery-item">
-          COFFEE
+        <div class="gallery-item"
+             data-en="Atmosphere"
+             data-ar="الأجواء">
+          Atmosphere
         </div>
 
-        <div class="gallery-item">
-          LATTE
+        <div class="gallery-item"
+             data-en="Drinks"
+             data-ar="مشروبات">
+          Drinks
         </div>
 
-        <div class="gallery-item">
-          DESSERTS
+        <div class="gallery-item"
+             data-en="Desserts"
+             data-ar="حلويات">
+          Desserts
         </div>
 
-        <div class="gallery-item">
-          THE CAFE
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- VISIT -->
-
-  <section class="visit" id="visit">
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <div class="kicker">
-          Come by
-        </div>
-
-        <h2>
-          Visit us
-        </h2>
-
-      </div>
-
-
-      <div class="info-grid">
-
-        <div class="info-card">
-
-          <div class="info-icon">📍</div>
-
-          <h3>
-            Location
-          </h3>
-
-          <p>
-            Hama, Syria<br>
-            Exact address coming soon.
-          </p>
-
-        </div>
-
-
-        <div class="info-card">
-
-          <div class="info-icon">🕐</div>
-
-          <h3>
-            Opening hours
-          </h3>
-
-          <p>
-            Every day<br>
-            10:00 AM — 12:00 AM
-          </p>
-
-        </div>
-
-
-        <div class="info-card">
-
-          <div class="info-icon">☕</div>
-
-          <h3>
-            Contact
-          </h3>
-
-          <p>
-            +963 000 000 000<br>
-            Instagram: @coffeetime
-          </p>
-
+        <div class="gallery-item"
+             data-en="Good Times"
+             data-ar="أوقات جميلة">
+          Good Times
         </div>
 
       </div>
@@ -1082,46 +1459,173 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       VISIT
+  ========================= -->
 
-  <footer>
+  <section class="section visit" id="visit">
 
     <div class="container">
 
-      <div class="footer-top">
+      <div class="visit-grid">
 
         <div>
 
-          <a href="#home" class="logo">
-            <span class="bean"></span>
-            COFFEE TIME
-          </a>
+          <div class="section-label"
+               data-en="Come By"
+               data-ar="زورونا">
+            Come By
+          </div>
 
-          <p>
-            Good coffee, good time.
-            A warm cafe experience in Hama.
+          <h2 class="section-title"
+              data-en="See you at Coffee Time."
+              data-ar="نلتقي في Coffee Time.">
+            See you at Coffee Time.
+          </h2>
+
+          <p class="visit-description"
+             data-en="Drop by for your favorite coffee, a quick dessert or simply a good conversation."
+             data-ar="زورونا لقهوة تحبها، حلوى سريعة، أو ببساطة لجلسة وأحاديث جميلة.">
+            Drop by for your favorite coffee, a quick dessert or simply a good conversation.
           </p>
+
+          <a href="https://maps.google.com"
+             target="_blank"
+             class="map-button"
+             data-en="Open Google Maps"
+             data-ar="فتح خرائط Google">
+            Open Google Maps
+          </a>
 
         </div>
 
 
-        <div class="social">
+        <div class="visit-details">
 
-          <a href="#">
-            Instagram
-          </a>
+          <div class="detail">
 
-          <a href="https://wa.me/963000000000">
-            WhatsApp
-          </a>
+            <div class="detail-label"
+                 data-en="Location"
+                 data-ar="الموقع">
+              Location
+            </div>
+
+            <div class="detail-value"
+                 data-en="Hama, Syria"
+                 data-ar="حماة، سوريا">
+              Hama, Syria
+            </div>
+
+          </div>
+
+
+          <div class="detail">
+
+            <div class="detail-label"
+                 data-en="Address"
+                 data-ar="العنوان">
+              Address
+            </div>
+
+            <div class="detail-value"
+                 data-en="Exact address coming soon"
+                 data-ar="العنوان بالتحديد قريباً">
+              Exact address coming soon
+            </div>
+
+          </div>
+
+
+          <div class="detail">
+
+            <div class="detail-label"
+                 data-en="Opening Hours"
+                 data-ar="أوقات الدوام">
+              Opening Hours
+            </div>
+
+            <div class="detail-value"
+                 data-en="Every day · 9:00 AM – 12:00 AM"
+                 data-ar="كل يوم · 9:00 صباحاً – 12:00 ليلاً">
+              Every day · 9:00 AM – 12:00 AM
+            </div>
+
+          </div>
+
+
+          <div class="detail">
+
+            <div class="detail-label"
+                 data-en="Contact"
+                 data-ar="تواصل معنا">
+              Contact
+            </div>
+
+            <div class="detail-value">
+              <a href="https://instagram.com/"
+                 target="_blank">
+                Instagram
+              </a>
+              &nbsp; · &nbsp;
+              <a href="https://wa.me/963000000000"
+                 target="_blank">
+                WhatsApp
+              </a>
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
+    </div>
 
-      <div class="copyright">
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div>
+
+        <div class="footer-logo">
+          Coffee Time
+        </div>
+
+        <div class="footer-copy"
+             data-en="Coffee · Hama"
+             data-ar="قهوة · حماة">
+          Coffee · Hama
+        </div>
+
+      </div>
+
+
+      <div class="footer-copy"
+           data-en="© 2026 Coffee Time. All rights reserved."
+           data-ar="© 2026 Coffee Time. جميع الحقوق محفوظة.">
         © 2026 Coffee Time. All rights reserved.
+      </div>
+
+
+      <div class="footer-social">
+
+        <a href="https://instagram.com/"
+           target="_blank">
+          Instagram
+        </a>
+
+        <a href="https://wa.me/963000000000"
+           target="_blank">
+          WhatsApp
+        </a>
+
       </div>
 
     </div>
@@ -1129,44 +1633,111 @@
   </footer>
 
 
-  <!-- FLOATING WHATSAPP -->
+  <!-- =========================
+       WHATSAPP
+  ========================= -->
 
   <a
-    class="whatsapp"
     href="https://wa.me/963000000000"
-    target="_blank">
-    WhatsApp
+    target="_blank"
+    class="whatsapp"
+    aria-label="WhatsApp">
+    ☎
   </a>
 
 
-  <!-- MENU SCRIPT -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
   <script>
 
-    const tabs = document.querySelectorAll(".tab");
-    const panels = document.querySelectorAll(".menu-panel");
+    /* MENU TABS */
 
-    tabs.forEach(tab => {
+    const menuTabs = document.querySelectorAll(".menu-tab");
+    const menuCategories = document.querySelectorAll(".menu-category");
+
+    menuTabs.forEach(tab => {
 
       tab.addEventListener("click", () => {
 
-        tabs.forEach(t => {
-          t.classList.remove("active");
+        const category = tab.dataset.category;
+
+        menuTabs.forEach(item => {
+          item.classList.remove("active");
         });
 
-        panels.forEach(panel => {
-          panel.classList.remove("active");
+        menuCategories.forEach(item => {
+          item.classList.remove("active");
         });
 
         tab.classList.add("active");
 
-        document
-          .getElementById(tab.dataset.target)
-          .classList.add("active");
+        document.getElementById(category).classList.add("active");
 
       });
 
     });
+
+
+    /* LANGUAGE SWITCHER */
+
+    let currentLanguage = "en";
+
+    function toggleLanguage() {
+
+      currentLanguage =
+        currentLanguage === "en"
+          ? "ar"
+          : "en";
+
+      document.documentElement.lang = currentLanguage;
+
+      document.documentElement.dir =
+        currentLanguage === "ar"
+          ? "rtl"
+          : "ltr";
+
+
+      /* Change every translated element */
+
+      document.querySelectorAll("[data-en]").forEach(element => {
+
+        const englishText =
+          element.getAttribute("data-en");
+
+        const arabicText =
+          element.getAttribute("data-ar");
+
+        if (currentLanguage === "ar") {
+
+          element.innerHTML = arabicText;
+
+        } else {
+
+          element.innerHTML = englishText;
+
+        }
+
+      });
+
+
+      /* Change language button */
+
+      document.getElementById("languageButton").textContent =
+        currentLanguage === "ar"
+          ? "English"
+          : "العربية";
+
+
+      /* Change page title */
+
+      document.title =
+        currentLanguage === "ar"
+          ? "Coffee Time | حماة"
+          : "Coffee Time | Hama";
+
+    }
 
   </script>
 
